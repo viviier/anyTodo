@@ -1,25 +1,41 @@
 // todolist 有一个toggle点击方法，有一个列表里面是todo，然后有一个todos
 import React from 'react'
-import Todo from './Todo'
+import Todo from '../containers/Todo'
 
 
 const TodoList = ({ todos, onTodoClick, filter }) => {
     if(todos.length == 0) {
         switch (filter) {
-            case 'SHOW_ALL':
-                return <p>请输入Todo</p>
-            case 'SHOW_ACTIVE':
-                return <p>没有正在进行的Todo项</p>
             case 'SHOW_COMPLETED':
-                return <p>没有已完成的Todo项</p>
+                return (
+                    <div
+                        className="ui middle aligned divided list"
+                        style={{ width: '100%' }}
+                    >
+                    <div className="item">
+                        <div className="left floated content" style={{lineHeight: '2'}}><h2>您目前没有以完成的任务</h2></div>
+                    </div>
+                    </div>
+                )
             default:
-                return <p>请输入Todo</p>
+                return (
+                    <div
+                        className="ui middle aligned divided list"
+                        style={{ width: '100%' }}
+                    >
+                    <div className="item">
+                        <div className="left floated content" style={{lineHeight: '2'}}><h2>恭喜您，目前没有待办任务</h2></div>
+                    </div>
+                    </div>
+                )
         }
     }
 
     return (
-    <div>
-        <ul className="list-group">
+    <div
+        className="ui middle aligned animated divided list"
+        style={{ width: '100%' }}
+    >
             {
                 todos.map( todo =>
                     <Todo
@@ -29,7 +45,6 @@ const TodoList = ({ todos, onTodoClick, filter }) => {
                     />
                 )
             }
-        </ul>
     </div>
     )
 }

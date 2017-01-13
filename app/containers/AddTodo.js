@@ -8,7 +8,8 @@ import { addTodo } from '../actions'
 import { connect } from 'react-redux'
 
 const mapDispatchToProps = ({
-    onClick: addTodo
+    onClick: addTodo,
+    onPress: addTodo
 })
 
 const AddTodo = connect(

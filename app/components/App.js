@@ -7,7 +7,9 @@ import VisibleTodo from '../containers/VisibleTodo'
 import Footer from './Footer'
 
 const App = () => (
-    <div>
+    <div className="ui center aligned text container">
+        <h1>anyTodo</h1>
+
         <AddTodo />
         <VisibleTodo />
         <Footer />

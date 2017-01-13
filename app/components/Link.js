@@ -4,18 +4,18 @@ import React from 'react'
 
 const Link = ({ active, children, onClick }) => {
     if(active) {
-        return  <button className="btn btn-primary">{children}</button>
+        return  <div className="active section">{children}</div>
     }
 
     return (
-        <button className='btn btn-default'
+        <a className='section'
             onClick = { e => {
                 e.preventDefault()
                 onClick()
             }}
         >
             {children}
-        </button>
+        </a>
     )
 }
 

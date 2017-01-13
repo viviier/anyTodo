@@ -2,14 +2,26 @@
 // 有一个点击事件
 import React from 'react'
 
-const AddTodoForm = ({onClick}) => {
+const AddTodoForm = ({onClick, onPress}) => {
     let input
        return (
-           <div className="row">
-            <div className="col-lg-6 col-xs-12">
-                <div className="input-group">
-                    <span className="input-group-btn">
-                        <button className="btn btn-default" type="button"
+           <div
+               className="ui icon input"
+               style={{ width: '100%' }}
+           >
+               <input
+                   onKeyPress={ e => {
+                       if(e.which == '13') {
+                           onPress(input.value)
+                           input.value = ''
+                       }
+                   }}
+                   type="text"
+                   placeholder="请输入您的待办Todo，点击按钮添加..."
+                   ref={ node => input = node }
+               />
+                        <i
+                            className="plus link icon"
                             onClick = { e => {
                                 e.preventDefault()
                                 if(!input.value.trim()) {
@@ -18,17 +30,8 @@ const AddTodoForm = ({onClick}) => {
                                 onClick(input.value)
                                 input.value = ''
                             }}
-                        >
-                            Add Todo
-                        </button>
-                    </span>
-                    <input
-                    type="text" className="form-control"
-                    ref={ node => input = node }
-                    />
+                        />
                 </div>
-            </div>
-        </div>
     )
 }
 

@@ -10490,7 +10490,7 @@ var _react = __webpack_require__(10);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _AddTodo = __webpack_require__(103);
+var _AddTodo = __webpack_require__(102);
 
 var _AddTodo2 = _interopRequireDefault(_AddTodo);
 
@@ -10510,7 +10510,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var App = function App() {
     return _react2.default.createElement(
         'div',
-        null,
+        { className: 'ui center aligned text container' },
+        _react2.default.createElement(
+            'h1',
+            null,
+            'anyTodo'
+        ),
         _react2.default.createElement(_AddTodo2.default, null),
         _react2.default.createElement(_VisibleTodo2.default, null),
         _react2.default.createElement(_Footer2.default, null)
@@ -10578,44 +10583,40 @@ var _react2 = _interopRequireDefault(_react);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var AddTodoForm = function AddTodoForm(_ref) {
-    var _onClick = _ref.onClick;
+    var _onClick = _ref.onClick,
+        onPress = _ref.onPress;
 
     var input = void 0;
     return _react2.default.createElement(
-        "div",
-        { className: "row" },
-        _react2.default.createElement(
-            "div",
-            { className: "col-lg-6 col-xs-12" },
-            _react2.default.createElement(
-                "div",
-                { className: "input-group" },
-                _react2.default.createElement(
-                    "span",
-                    { className: "input-group-btn" },
-                    _react2.default.createElement(
-                        "button",
-                        { className: "btn btn-default", type: "button",
-                            onClick: function onClick(e) {
-                                e.preventDefault();
-                                if (!input.value.trim()) {
-                                    return;
-                                }
-                                _onClick(input.value);
-                                input.value = '';
-                            }
-                        },
-                        "Add Todo"
-                    )
-                ),
-                _react2.default.createElement("input", {
-                    type: "text", className: "form-control",
-                    ref: function ref(node) {
-                        return input = node;
-                    }
-                })
-            )
-        )
+        'div',
+        {
+            className: 'ui icon input',
+            style: { width: '100%' }
+        },
+        _react2.default.createElement('input', {
+            onKeyPress: function onKeyPress(e) {
+                if (e.which == '13') {
+                    onPress(input.value);
+                    input.value = '';
+                }
+            },
+            type: 'text',
+            placeholder: '\u8BF7\u8F93\u5165\u60A8\u7684\u5F85\u529ETodo\uFF0C\u70B9\u51FB\u6309\u94AE\u6DFB\u52A0...',
+            ref: function ref(node) {
+                return input = node;
+            }
+        }),
+        _react2.default.createElement('i', {
+            className: 'plus link icon',
+            onClick: function onClick(e) {
+                e.preventDefault();
+                if (!input.value.trim()) {
+                    return;
+                }
+                _onClick(input.value);
+                input.value = '';
+            }
+        })
     );
 }; // 纯ui组件
 // 有一个点击事件
@@ -10636,7 +10637,7 @@ var _react = __webpack_require__(10);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _FilterLink = __webpack_require__(104);
+var _FilterLink = __webpack_require__(103);
 
 var _FilterLink2 = _interopRequireDefault(_FilterLink);
 
@@ -10648,31 +10649,42 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Footer = function Footer() {
     return _react2.default.createElement(
         'div',
-        null,
+        { className: 'ui grid', style: { width: '100%' } },
         _react2.default.createElement(
-            'p',
-            null,
-            'SHOW:',
-            ' ',
+            'div',
+            { className: 'left floated content' },
+            'show:'
+        ),
+        _react2.default.createElement(
+            'div',
+            { className: 'right floated content' },
             _react2.default.createElement(
                 'div',
-                { className: 'btn-group' },
+                { className: 'ui breadcrumb' },
                 _react2.default.createElement(
                     _FilterLink2.default,
                     { filter: 'SHOW_ALL' },
-                    'All'
+                    '\u5168\u90E8'
                 ),
-                ' ',
+                _react2.default.createElement(
+                    'div',
+                    { className: 'divider' },
+                    ' / '
+                ),
                 _react2.default.createElement(
                     _FilterLink2.default,
                     { filter: 'SHOW_ACTIVE' },
-                    'Active'
+                    '\u6B63\u5728\u8FDB\u884C'
                 ),
-                ' ',
+                _react2.default.createElement(
+                    'div',
+                    { className: 'divider' },
+                    ' / '
+                ),
                 _react2.default.createElement(
                     _FilterLink2.default,
                     { filter: 'SHOW_COMPLETED' },
-                    'Completed'
+                    '\u5DF2\u5B8C\u6210'
                 )
             )
         )
@@ -10705,15 +10717,15 @@ var Link = function Link(_ref) {
 
     if (active) {
         return _react2.default.createElement(
-            'button',
-            { className: 'btn btn-primary' },
+            'div',
+            { className: 'active section' },
             children
         );
     }
 
     return _react2.default.createElement(
-        'button',
-        { className: 'btn btn-default',
+        'a',
+        { className: 'section',
             onClick: function onClick(e) {
                 e.preventDefault();
                 _onClick();
@@ -10736,62 +10748,6 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _react = __webpack_require__(10);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRedux = __webpack_require__(21);
-
-var _actions = __webpack_require__(27);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Todo = function Todo(_ref) {
-    var text = _ref.text,
-        onClick = _ref.onClick,
-        completed = _ref.completed,
-        dispatch = _ref.dispatch;
-    return _react2.default.createElement(
-        'li',
-        { className: 'list-group-item',
-            onClick: onClick,
-            style: {
-                textDecoration: completed ? 'line-through' : 'none'
-            }
-        },
-        _react2.default.createElement(
-            'button',
-            { className: 'close' },
-            _react2.default.createElement(
-                'span',
-                {
-                    onClick: function onClick(e) {
-                        console.log(e.target.parentNode.parentNode.id);
-                        dispatch((0, _actions.removeTodo)(e.target.parentNode.parentNode));
-                    }
-                },
-                '\xD7'
-            )
-        ),
-        text
-    );
-};
-
-Todo = (0, _reactRedux.connect)()(Todo);
-
-exports.default = Todo;
-
-/***/ }),
-/* 102 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; // todolist 有一个toggle点击方法，有一个列表里面是todo，然后有一个todos
 
 
@@ -10799,7 +10755,7 @@ var _react = __webpack_require__(10);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Todo = __webpack_require__(101);
+var _Todo = __webpack_require__(104);
 
 var _Todo2 = _interopRequireDefault(_Todo);
 
@@ -10812,57 +10768,73 @@ var TodoList = function TodoList(_ref) {
 
     if (todos.length == 0) {
         switch (filter) {
-            case 'SHOW_ALL':
-                return _react2.default.createElement(
-                    'p',
-                    null,
-                    '\u8BF7\u8F93\u5165Todo'
-                );
-            case 'SHOW_ACTIVE':
-                return _react2.default.createElement(
-                    'p',
-                    null,
-                    '\u6CA1\u6709\u6B63\u5728\u8FDB\u884C\u7684Todo\u9879'
-                );
             case 'SHOW_COMPLETED':
                 return _react2.default.createElement(
-                    'p',
-                    null,
-                    '\u6CA1\u6709\u5DF2\u5B8C\u6210\u7684Todo\u9879'
+                    'div',
+                    {
+                        className: 'ui middle aligned divided list',
+                        style: { width: '100%' }
+                    },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'item' },
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'left floated content', style: { lineHeight: '2' } },
+                            _react2.default.createElement(
+                                'h2',
+                                null,
+                                '\u60A8\u76EE\u524D\u6CA1\u6709\u4EE5\u5B8C\u6210\u7684\u4EFB\u52A1'
+                            )
+                        )
+                    )
                 );
             default:
                 return _react2.default.createElement(
-                    'p',
-                    null,
-                    '\u8BF7\u8F93\u5165Todo'
+                    'div',
+                    {
+                        className: 'ui middle aligned divided list',
+                        style: { width: '100%' }
+                    },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'item' },
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'left floated content', style: { lineHeight: '2' } },
+                            _react2.default.createElement(
+                                'h2',
+                                null,
+                                '\u606D\u559C\u60A8\uFF0C\u76EE\u524D\u6CA1\u6709\u5F85\u529E\u4EFB\u52A1'
+                            )
+                        )
+                    )
                 );
         }
     }
 
     return _react2.default.createElement(
         'div',
-        null,
-        _react2.default.createElement(
-            'ul',
-            { className: 'list-group' },
-            todos.map(function (todo) {
-                return _react2.default.createElement(_Todo2.default, _extends({
-                    id: todo.id,
-                    key: todo.id
-                }, todo, {
-                    onClick: function onClick() {
-                        return onTodoClick(todo.id);
-                    }
-                }));
-            })
-        )
+        {
+            className: 'ui middle aligned animated divided list',
+            style: { width: '100%' }
+        },
+        todos.map(function (todo) {
+            return _react2.default.createElement(_Todo2.default, _extends({
+                key: todo.id
+            }, todo, { // 这里的{...todo} 是state状态里面的每一个todo{}对象里面的属性，id，text，completed 然后传入了Todo组件
+                onClick: function onClick() {
+                    return onTodoClick(todo.id);
+                }
+            }));
+        })
     );
 };
 
 exports.default = TodoList;
 
 /***/ }),
-/* 103 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10883,7 +10855,8 @@ var _reactRedux = __webpack_require__(21);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapDispatchToProps = {
-    onClick: _actions.addTodo
+    onClick: _actions.addTodo,
+    onPress: _actions.addTodo
 }; // 划分AddTodo
 // 我们需要一个addTodo的UI组件，AddTodoForm
 // AddTodo里面仅有一个dispatch，因此只需要写一个mapDispatchToProps
@@ -10894,7 +10867,7 @@ var AddTodo = (0, _reactRedux.connect)(null, mapDispatchToProps)(_AddTodoForm2.d
 exports.default = AddTodo;
 
 /***/ }),
-/* 104 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10934,6 +10907,73 @@ var FilterLink = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_
 exports.default = FilterLink;
 
 /***/ }),
+/* 104 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(10);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(21);
+
+var _actions = __webpack_require__(27);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// 这边接收的text，id，completed是从...state状态里面传进来的
+var Todo = function Todo(_ref) {
+    var text = _ref.text,
+        id = _ref.id,
+        onClick = _ref.onClick,
+        completed = _ref.completed,
+        dispatch = _ref.dispatch;
+    return _react2.default.createElement(
+        'div',
+        { className: 'item',
+            onClick: onClick
+        },
+        _react2.default.createElement(
+            'div',
+            { className: 'right floated content' },
+            _react2.default.createElement(
+                'button',
+                {
+                    className: 'btn-class ui inverted red button',
+                    style: {
+                        display: 'none'
+                    },
+                    onClick: function onClick(e) {
+                        e.stopPropagation();
+                        dispatch((0, _actions.removeTodo)(id));
+                    }
+                },
+                '\u5220\u9664'
+            )
+        ),
+        _react2.default.createElement(
+            'div',
+            {
+                className: 'left floated content',
+                style: {
+                    lineHeight: '2',
+                    textDecoration: completed ? 'line-through' : 'none' } },
+            text
+        )
+    );
+};
+
+Todo = (0, _reactRedux.connect)()(Todo);
+
+exports.default = Todo;
+
+/***/ }),
 /* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10944,7 +10984,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _TodoList = __webpack_require__(102);
+var _TodoList = __webpack_require__(101);
 
 var _TodoList2 = _interopRequireDefault(_TodoList);
 
