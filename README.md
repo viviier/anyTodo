@@ -1,7 +1,7 @@
 # anyTodo
 
 ### 使用说明
-基于redux和Semantic的管理任务清单例子
+基于<b>redux</b>和<b>Semantic</b>的管理任务清单例子
 
 #### 项目截图
 
@@ -26,7 +26,7 @@
 <code>npm run dev</code>
 
 访问地址<br/>
-ocalhost:8866
+<b>localhost:8866</b>
 
 打包编译为静态页面<br/>
-<code>npm run buld</code>
+<code>npm run build</code>
