@@ -20,7 +20,7 @@
 <code>git clone https://github.com/viviier/anyTodo.git</code>
 
 安装依赖包<br/>
-请使用<code>yarn</code> 或者 <code>npm i</code>
+请使用<code>yarn</code> 或者 <code>npm</code> 进行安装
 
 启动服务<br/>
 <code>npm run dev</code>
