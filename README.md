@@ -4,12 +4,13 @@
 基于<b>redux</b>和<b>Semantic</b>的管理任务清单例子
 
 #### 项目截图
+![https://a-ssl.duitang.com/uploads/item/201701/14/20170114133338_5JCGn.gif](演示)
 
 #### 技术栈
 > 详情可参阅 package.json
 * React
 * Redux
-* Webpack
+* Webpack2
 * ES6 + Babel
 * Semantic（UI）
 
@@ -20,7 +21,7 @@
 <code>git clone https://github.com/viviier/anyTodo.git</code>
 
 安装依赖包<br/>
-请使用<code>yarn</code> 或者 <code>npm</code> 进行安装
+请使用<code>yarn</code> 或者 <code>npm</code><b>推荐</b> 进行安装
 
 启动服务<br/>
 <code>npm run dev</code>
