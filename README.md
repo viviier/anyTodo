@@ -4,7 +4,7 @@
 基于<b>redux</b>和<b>Semantic</b>的管理任务清单例子
 
 #### 项目截图
-![](http://p1.bpimg.com/567571/228b71fc287768fa.gif)
+![](http://okuesjok0.bkt.clouddn.com/todo%E6%BC%94%E7%A4%BA.gif)
 
 #### 技术栈
 > 详情可参阅 package.json
