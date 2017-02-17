@@ -14,6 +14,10 @@
 * ES6 + Babel
 * Semantic（UI）
 
+#### 功能
+* 添加删除完成取消
+* 切换可见状态
+* 存储功能(localstorage)
 
 #### 本地运行
 
